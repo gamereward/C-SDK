@@ -1,0 +1,1 @@
+g++ -DLINUX=1 main.cpp GRD/BigDecimal.cpp GRD/GrdManager.cpp GRD/JSON.cpp GRD/JSONValue.cpp GRD/md5.cpp -lcurl -o gamereward
