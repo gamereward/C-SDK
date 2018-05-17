@@ -11,6 +11,10 @@ namespace Grd{
 	typedef class GrdLeaderBoard;
 	typedef class SessionData;
 	typedef class Transaction;
+	enum GrdNet
+	{
+		MAIN_NET, TEST_NET
+	};
 	enum TransactionStatus
 	{
 		PENDING_TRANS = 0,
@@ -158,7 +162,7 @@ namespace Grd{
 	{
 	public:
 		static GrdManager* getInstance();
-		static void init(std::string appId, std::string apiSecret);
+		static void init(std::string appId, std::string apiSecret,GrdNet net);
 		GrdResult<AccountInfo> accountbalance(const std::string&username);
 		GrdResult<JSONValue*> callServerScript(const std::string&username, const std::string &scriptname, const std::string &funcname, const std::vector<std::string>params);
 		GrdResultBase transfer(const std::string&username, const std::string& toAddress, const BigDecimal& amount);
@@ -189,7 +193,7 @@ namespace Grd{
 			std::string message;
 		};
 
-		GrdManager(std::string apiId, std::string secret);
+		GrdManager(std::string apiId, std::string secret, GrdNet net);
 		const std::string ACCOUNT_BALANCE_ACTION = "accountbalance";
 		const std::string CALL_SERVERSCRIPT_ACTION = "callserverscript";
 		const std::string TRANSFER_ACTION = "transfer";
@@ -202,7 +206,9 @@ namespace Grd{
 		const std::string INCREASE_USERSCORE_ACTION = "increaseuserscore";
 		const std::string COUNT_TRANSACTION_ACTION = "counttransactions";
 		const std::string GET_TRANSACTION_ACTION = "transactions";
-		const std::string apiUrl = "https://www.gamereward.io/appapi/";
+		const std::string MAIN_NET_URL = "https://www.gamereward.io/appapi/";
+		const std::string TEST_NET_URL = "https://www.test.gamereward.io/appapi/";
+		std::string apiUrl = "";
 		std::string apiId = "";
 		std::string apiSecret = "";
 		std::string getRequestKey();

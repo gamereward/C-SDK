@@ -637,7 +637,7 @@ int main(int argc, char **argv)
 {
 	const std::string appId = "6e672e888487bd8346b946a715c74890077dc332";
 	const std::string secret = "acc3e0404646c57502b480dc052c4fe15878a7ab84fb43402106c575658472faf7e9050c92a851b0016442ab604b0488aab3e67537fcfda3650ad6cfd43f7974";
-	Grd::GrdManager::init(appId, secret);
+	Grd::GrdManager::init(appId, secret, Grd::GrdNet::TEST_NET);
 	clearScreen();
 	cout << "USER NAME:";
 	char buffer[100];

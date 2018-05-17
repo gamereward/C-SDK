@@ -13,20 +13,21 @@ namespace Grd{
 		return nullptr;
 	}
 	static GrdManager*instance = nullptr;
-	void GrdManager::init(std::string apiId, std::string secret){
+	void GrdManager::init(std::string apiId, std::string secret,GrdNet net){
 		if (instance != nullptr){
 			delete instance;
 		}
-		instance = new GrdManager(apiId, secret);
+		instance = new GrdManager(apiId, secret, net);
 
 	}
 	Grd::GrdManager*Grd::GrdManager::getInstance(){
 		return instance;
 	}
-	Grd::GrdManager::GrdManager(std::string appId, std::string secret)
+	Grd::GrdManager::GrdManager(std::string appId, std::string secret,GrdNet net)
 	{
 		this->apiId = appId;
 		this->apiSecret = secret;
+		this->apiUrl = (net == MAIN_NET ? MAIN_NET_URL:TEST_NET_URL);
 	}
 
 	std::string Grd::GrdManager::getRequestKey()
